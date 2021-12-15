@@ -6,4 +6,5 @@ urlpatterns = [
     path('ficha',views.datosAsegurado),
     path('coberturas',views.coberturas),
     path('contacto',views.contacto),
+    path('documentos',views.documentacion),
 ]

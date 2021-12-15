@@ -17,3 +17,7 @@ def coberturas(request):
 def contacto(request):
 
     return render(request, 'AppURC/contacto.html')
+
+def documentacion(request):
+
+    return render(request, 'AppURC/documentos.html')
