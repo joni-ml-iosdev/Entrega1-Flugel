@@ -2,22 +2,26 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
+def home(request): #check
 
     return render(request, 'AppURC/home.html')
 
-def datosAsegurado(request):
+def datosAsegurado(request): #check
 
     return render(request, 'AppURC/ficha.html')
 
-def coberturas(request):
+def coberturas(request): #check
 
     return render(request, 'AppURC/coberturas.html')
 
-def contacto(request):
+def convenio(request): #check
 
-    return render(request, 'AppURC/contacto.html')
+    return render(request, 'AppURC/convenio.html')
 
-def documentacion(request):
+def documentacion(request): #check
 
-    return render(request, 'AppURC/documentos.html')
+    return render(request, 'AppURC/documentacion.html')
+
+def exportaciones(request): #check
+
+    return render(request, 'AppURC/exportaciones.html')
