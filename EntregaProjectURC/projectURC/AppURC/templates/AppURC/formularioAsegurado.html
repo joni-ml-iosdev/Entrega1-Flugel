@@ -1,0 +1,34 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Formulario Datos del Asegurado</h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+        <form action='/AppURC/formularioAsegurado' method="POST"> {% csrf_token %}
+
+            
+            <p>Razon Social: <input type="text" name="razonSocial">     </p>
+
+            <p>CUIT: <input type="number" name="cuit">     </p>
+
+            <input type="submit" value="Guardar">
+
+        </form>
+
+
+    {% endblock %}

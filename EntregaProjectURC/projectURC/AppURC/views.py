@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from AppURC.models import Asegurado
 
-# Create your views here.
 
 def home(request): #check
 
@@ -25,3 +26,17 @@ def documentacion(request): #check
 def exportaciones(request): #check
 
     return render(request, 'AppURC/exportaciones.html')
+
+def formularioAsegurado(request):
+
+    if request.method == 'POST':
+
+        aseguradoInstancia = Asegurado (request.POST ["razonSocial"], request.POST["cuit"]) 
+
+        aseguradoInstancia.save()
+
+        return render(request, 'AppURC/home.html')
+
+        
+    return render(request, 'AppURC/formularioAsegurado.html')
+
