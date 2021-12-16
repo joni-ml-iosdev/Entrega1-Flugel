@@ -7,10 +7,18 @@ class poliza(models.Model): # con vista coberturas/template coberturas
     companiaAseg = models.CharField(max_length=40)
     montoAsegurado = models.IntegerField()
 
+    def __str__(self): # me sirve para ver en admin la info cargada
+
+        return f"Compañía Aseguradora: {self.companiaAseg} | Monto Asegurado: {self.montoAsegurado}"
+
 class Asegurado(models.Model): #con vista datosAsegurado/template ficha
 
     razonSocial = models.CharField(max_length=20)
     cuit = models.IntegerField()
+    
+    def __str__(self): # me sirve para ver en admin la info cargada
+
+        return f"Empresa Asegurada: {self.razonSocial} | CUIT del Asegurado: {self.cuit}"
 
 class export(models.Model): #con vista exportaciones/template exportaciones
               
@@ -18,12 +26,24 @@ class export(models.Model): #con vista exportaciones/template exportaciones
     paisDestino = models.CharField(max_length=40)
     clientes = models.IntegerField()
 
+    def __str__(self): # me sirve para ver en admin la info cargada
+
+        return f"Es exportador: {self.exportando} | País de destino: {self.paisDestino} | Clientes: {self.clientes}"
+
 class Convenio(models.Model): #con vista convenio/template convenio
 
     camara = models.CharField(max_length=40)
     actividad = models.CharField(max_length=40)
 
+    def __str__(self): # me sirve para ver en admin la info cargada
+
+        return f"Camara/Asocación: {self.camara} | Actividad: {self.actividad}"
+
 class Documentacion(models.Model): #con vista documentacion
 
     formulario = models.IntegerField()
     detalleCompradores = models.IntegerField()
+
+    def __str__(self): # me sirve para ver en admin la info cargada
+
+        return f"Formulario n°: {self.formulario} | Detalle de Compradores: {self.detalleCompradores}"
