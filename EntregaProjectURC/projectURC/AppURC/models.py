@@ -4,19 +4,26 @@ from django.db import models
 
 class poliza(models.Model):
     
-    empresa = models.CharField(max_length=40)
+    companiaAseg = models.CharField(max_length=40)
     montoAsegurado = models.IntegerField()
 
 class Asegurado(models.Model):
 
     razonSocial = models.CharField(max_length=20)
     cuit = models.IntegerField()
-    mailContact = models.EmailField()
-    inicioCobertura = models.DateField() 
 
 class export(models.Model):
-
-                            
+              
     exportando = models.BooleanField()
     paisDestino = models.CharField(max_length=40)
     clientes = models.IntegerField()
+
+class Convenio(models.Model):
+
+    camara = models.CharField(max_length=40)
+    actividad = models.CharField(max_length=40)
+
+class Documentacion(models.Model):
+
+    formulario = models.IntegerField()
+    detalleCompradores = models.IntegerField()
