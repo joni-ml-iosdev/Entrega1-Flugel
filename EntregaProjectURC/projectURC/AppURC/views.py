@@ -33,12 +33,23 @@ def formularioAsegurado(request):
     
     if request.method == 'POST':
 
-    
-        aseguradoInstancia = Asegurado (razonSocial=request.POST["razonSocial"], cuit=request.POST["cuit"]) 
+        miFormulario = FormularioAsegurado (request.POST)
 
-        aseguradoInstancia.save()
+        print(miFormulario)
 
-        return render(request, 'AppURC/home.html')
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            aseguradoInstancia = Asegurado (razonSocial=informacion["razonSocial"], cuit=informacion["cuit"]) 
+
+            aseguradoInstancia.save()
+
+            return render(request, 'AppURC/home.html')
+
+    else:
+
+        miFormulario= FormularioAsegurado()        
         
-    return render(request, 'AppURC/formularioAsegurado.html')
+    return render(request, 'AppURC/formularioAsegurado.html',{'miFormulario':miFormulario})
 

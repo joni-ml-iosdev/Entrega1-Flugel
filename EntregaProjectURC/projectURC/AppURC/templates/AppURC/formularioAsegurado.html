@@ -21,20 +21,23 @@
 
         <form action='/AppURC/formularioAsegurado' method="POST"> {% csrf_token %}
 
-            
+            <!-- 
             <p>Razon Social: <input type="text" name="razonSocial">     </p>
 
             <p>CUIT: <input type="number" name="cuit">     </p>
-
-            <!-- 
+            -->
+            
             <table>
             
-                {{miFormulario.as_table}}
+                {{ miFormulario.as_table }}
+
+                
 
             </table>
 
-            -->
+            
             <input type="submit" value="Guardar">
+            
             
         </form>
 
