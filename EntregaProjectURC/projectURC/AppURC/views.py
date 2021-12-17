@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppURC.models import Asegurado
-from AppURC.forms import FormularioAsegurado
+from AppURC.models import Asegurado,export
+from AppURC.forms import FormularioAsegurado, FormularioExportaciones
 
 
 def home(request): #check
@@ -52,4 +52,29 @@ def formularioAsegurado(request):
         miFormulario= FormularioAsegurado()        
         
     return render(request, 'AppURC/formularioAsegurado.html',{'miFormulario':miFormulario})
+
+def formularioExportaciones(request):
+
+    
+    if request.method == 'POST':
+
+        miFormulario2 = FormularioExportaciones (request.POST)
+
+        print(miFormulario2)
+
+        if miFormulario2.is_valid:
+
+            informacion = miFormulario2.cleaned_data
+
+            exportacionesInstancia = export (exportando=informacion["exportando"], paisDestino=informacion["paisDestino"], clientes=informacion["clientes"]) 
+
+            exportacionesInstancia.save()
+
+            return render(request, 'AppURC/home.html')
+
+    else:
+
+        miFormulario2= FormularioExportaciones()        
+        
+    return render(request, 'AppURC/formularioExportaciones.html',{'miFormulario2':miFormulario2})
 

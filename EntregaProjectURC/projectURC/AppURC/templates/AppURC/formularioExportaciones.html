@@ -1,0 +1,48 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Formulario De requisitos Exportador</h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+        <form action='/AppURC/formularioExportaciones' method="POST"> {% csrf_token %}
+
+            <!-- 
+            <p>Razon Social: <input type="text" name="razonSocial">     </p>
+
+            <p>CUIT: <input type="number" name="cuit">     </p>
+            -->
+            <h2><br>Te pedimos que completes los siguientes datos sobre tu estado exportador. <br><br> Muchas gracias!</b></h2>
+
+            <br>
+
+            <table>
+            
+                {{ miFormulario2.as_table }}
+
+                
+
+            </table>
+
+            
+            <input type="submit" value="Guardar">
+            
+            
+        </form>
+
+
+    {% endblock %}
