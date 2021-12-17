@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppURC.models import Asegurado
+from AppURC.forms import FormularioAsegurado
 
 
 def home(request): #check
@@ -29,14 +30,15 @@ def exportaciones(request): #check
 
 def formularioAsegurado(request):
 
+    
     if request.method == 'POST':
 
-        aseguradoInstancia = Asegurado (request.POST ["razonSocial"], request.POST["cuit"]) 
+    
+        aseguradoInstancia = Asegurado (razonSocial=request.POST["razonSocial"], cuit=request.POST["cuit"]) 
 
         aseguradoInstancia.save()
 
         return render(request, 'AppURC/home.html')
-
         
     return render(request, 'AppURC/formularioAsegurado.html')
 
