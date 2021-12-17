@@ -1,0 +1,34 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Buscador de Clientes Asegurados </h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+
+        <h1><br>Buscador de equipo</h1>
+
+        <form action="/AppURC/buscar/" method="GET">
+
+          <p style="color:blue;">Busqueda por CUIT: <input type="number" name="cuit" id="cuit"><br> </p> 
+        
+            <input type="submit" value="Buscar">
+
+
+        </form>
+
+    {% endblock %}

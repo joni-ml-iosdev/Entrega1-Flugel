@@ -78,3 +78,6 @@ def formularioExportaciones(request):
         
     return render(request, 'AppURC/formularioExportaciones.html',{'miFormulario2':miFormulario2})
 
+def busquedaDeAsegurado(request):
+
+    return render(request, 'AppURC/busquedaDeAsegurado.html')

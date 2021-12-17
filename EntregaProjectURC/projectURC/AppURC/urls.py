@@ -17,4 +17,9 @@ urlpatterns = [
     path('formularioAsegurado',views.formularioAsegurado, name='FormularioAsegurado'),
 
     path('formularioExportaciones',views.formularioExportaciones, name='FormularioExportaciones'),
+
+    path('busquedaDeAsegurado',views.busquedaDeAsegurado, name='BusquedaDeAsegurado'),
+
+
+
 ]

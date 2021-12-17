@@ -19,6 +19,13 @@
 
     {% block contenido %}
 
+
+        {% if miFormulario.errors %}
+
+            <p style='color: red;'>Error al cargar los datos, por favor volve a intentarlo</p>
+        
+        {% endif %}
+
         <form action='/AppURC/formularioAsegurado' method="POST"> {% csrf_token %}
 
             <!-- 

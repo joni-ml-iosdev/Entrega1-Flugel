@@ -19,6 +19,12 @@
 
     {% block contenido %}
 
+         {% if miFormulario.errors %}
+
+                <p style='color: red;'>Error al cargar los datos, por favor volve a intentarlo</p>
+
+        {% endif %}
+
         <form action='/AppURC/formularioExportaciones' method="POST"> {% csrf_token %}
 
             <!-- 
