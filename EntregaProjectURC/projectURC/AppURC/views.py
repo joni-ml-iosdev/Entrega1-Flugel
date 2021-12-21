@@ -85,13 +85,14 @@ def busquedaDeAsegurado(request):
 def buscarAseg(request):
     
 
-    if request.GET["cuit"]:
+    if request.GET["cuit"]: #se fija si la request viene metodo GET con un "cuit" hace cosas
 
-        #respuestaAsg = f"Se esta buscando a {request.GET['cuit']}"
-        cuit = request.GET["cuit"]
-        razonSocial = Asegurado.objects.filter(cuit__icontains=cuit)
-
-        return render(request, 'AppURC/resultadoBusquedaAseg.html',{"Razon Social":razonSocial,"Cuit":cuit})
+        
+        cuit = request.GET["cuit"] #guarda el nombre via get en una variable para python
+        asegurados = Asegurado.objects.filter(cuit__icontains=cuit) # busca los cuit en la BD, trayendo solo los que coincidan con la request (FILTRADOS)
+                                                                    # si aparecen asegurados con esos cuit, los guarda en "asegurados
+        
+        return render(request, 'AppURC/resultadoBusquedaAseg.html',{"asegurados":asegurados,"cuit":cuit}) # y se envían al resultado de la busqueda
 
     else:
         
@@ -133,3 +134,25 @@ def formularioSiniestros(request):
         miFormulario= FormularioSiniestros()        
         
     return render(request, 'AppURC/formularioSiniestros.html',{'miFormulario':miFormulario})
+
+def readExportaciones(request):
+
+    expos=export.objects.all() # traigo todas las exportaciones
+    
+    # para ver las expo en html, hay que mandarlas como contexto a través deun diccionario
+   
+    dic = {"Exportaciones": expos}
+
+    return render(request, 'AppURC/readExportaciones.html', dic)
+
+
+def eliminarExportaciones(request,paisDestino_eliminar):
+
+    eliminarPaisDestino = export.objects.get(paisDestino=paisDestino_eliminar)
+    eliminarPaisDestino.delete()
+
+    expos = export.objects.all()
+
+    dic = {'Exportaciones':expos}
+
+    return render(request, 'AppURC/readExportaciones.html', dic)

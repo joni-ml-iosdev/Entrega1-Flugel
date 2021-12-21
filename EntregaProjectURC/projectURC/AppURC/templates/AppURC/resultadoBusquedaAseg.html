@@ -1,0 +1,42 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Buscador de Clientes Asegurados </h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+
+        <h1><br>El resultado de la búsqueda es el siguiente...</h1><br>
+        
+        {% if asegurados %} <!-- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
+
+            <ul>
+                {% for asegurado in asegurados %}
+
+                <li>CUIT: {{asegurado.cuit}}</li> 
+                
+                <li>Razon Social: {{asegurado.razonSocial}}</li><br>
+                
+                {% endfor %}
+
+            </ul>
+
+
+        {% endif %}
+
+
+    {% endblock %}

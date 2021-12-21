@@ -18,10 +18,14 @@ urlpatterns = [
 
     path('formularioExportaciones',views.formularioExportaciones, name='FormularioExportaciones'),
 
+    path('formularioSiniestros',views.formularioSiniestros, name='FormularioSiniestros'),
+    
     path('busquedaDeAsegurado',views.busquedaDeAsegurado, name='BusquedaDeAsegurado'),
 
     path('buscarAseg/', views.buscarAseg),
+    
+    path('readExportaciones', views.readExportaciones, name='ReadExportaciones' ),
 
-    path('formularioSiniestros',views.formularioSiniestros, name='FormularioSiniestros'),
+    path('eliminarExportaciones/<paisDestino_eliminar>', views.eliminarExportaciones, name='eliminarExportaciones' ),
 
 ]

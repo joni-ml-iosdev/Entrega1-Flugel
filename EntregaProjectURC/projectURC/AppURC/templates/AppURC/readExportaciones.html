@@ -1,0 +1,40 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Exportaciones Registradas </h1>
+
+        
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+
+        {% for x in Exportaciones %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
+        
+            <li> {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
+
+            <button>
+
+                <a href="{% url 'eliminarExportaciones' x.paisDestino %}"> Eliminar registro</a>
+
+
+
+            </button>
+
+
+        {% endfor %}
+        <br>
+        <br>
+        <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>
+
+    {%endblock%}
