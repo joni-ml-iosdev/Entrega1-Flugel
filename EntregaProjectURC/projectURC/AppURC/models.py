@@ -47,3 +47,15 @@ class Documentacion(models.Model): #con vista documentacion
     def __str__(self): # me sirve para ver en admin la info cargada
 
         return f"Formulario n°: {self.formulario} | Detalle de Compradores: {self.detalleCompradores}"
+
+class Siniestros(models.Model):
+
+    fechaSiniestro=models.DateField()
+    reclamado=models.BooleanField()
+    montoImplicado=models.IntegerField()
+    detalle=models.CharField(max_length=140)
+
+    def __str__(self):
+
+        return f"Fecha Siniestro: {self.fechaSiniestro} | Reclamado: {self.reclamado} | Monto implicado: {self.montoImplicado} | Detalle: {self.detalle}"
+

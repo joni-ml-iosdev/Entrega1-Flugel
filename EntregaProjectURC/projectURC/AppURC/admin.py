@@ -14,3 +14,5 @@ admin.site.register(export)
 admin.site.register(Convenio)
 
 admin.site.register(Documentacion)
+
+admin.site.register(Siniestros)

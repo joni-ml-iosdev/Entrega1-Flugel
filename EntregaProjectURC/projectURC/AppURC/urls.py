@@ -20,6 +20,8 @@ urlpatterns = [
 
     path('busquedaDeAsegurado',views.busquedaDeAsegurado, name='BusquedaDeAsegurado'),
 
+    path('buscarAseg/', views.buscarAseg),
 
+    path('formularioSiniestros',views.formularioSiniestros, name='FormularioSiniestros'),
 
 ]

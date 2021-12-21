@@ -1,0 +1,46 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Formulario para registro de Siniestros</h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+
+        {% if miFormulario.errors %}
+
+            <p style='color: red;'>Error al cargar los datos, por favor volve a intentarlo</p>
+        
+        {% endif %}
+
+        <form action='/AppURC/formularioSiniestros' method="POST"> {% csrf_token %}
+         
+            
+            <table>
+            
+                {{ miFormulario.as_table }}
+                
+
+            </table>         
+
+        
+            <input type="submit" value="Guardar">
+            
+            
+        </form>
+
+
+    {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppURC.models import Asegurado,export
-from AppURC.forms import FormularioAsegurado, FormularioExportaciones
+from AppURC.models import Asegurado,export,Siniestros
+from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
 
 
 def home(request): #check
@@ -81,3 +81,55 @@ def formularioExportaciones(request):
 def busquedaDeAsegurado(request):
 
     return render(request, 'AppURC/busquedaDeAsegurado.html')
+
+def buscarAseg(request):
+    
+
+    if request.GET["cuit"]:
+
+        #respuestaAsg = f"Se esta buscando a {request.GET['cuit']}"
+        cuit = request.GET["cuit"]
+        razonSocial = Asegurado.objects.filter(cuit__icontains=cuit)
+
+        return render(request, 'AppURC/resultadoBusquedaAseg.html',{"Razon Social":razonSocial,"Cuit":cuit})
+
+    else:
+        
+        respuestaAsg = "Por favor verifica el cuit ingresado"
+
+    return HttpResponse(respuestaAsg)
+
+def formularioSiniestros(request):
+
+        
+    if request.method == 'POST':
+
+        miFormulario = FormularioSiniestros (request.POST)
+
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            siniestrosInstancia = Siniestros (
+
+                fechaSiniestro=informacion["fechaSiniestro"],
+
+                reclamado=informacion["reclamado"],
+
+                montoImplicado=informacion["montoImplicado"],
+                
+                detalle=informacion["detalle"],
+
+            ) 
+
+            siniestrosInstancia.save()
+
+            return render(request, 'AppURC/home.html')
+
+    else:
+
+        miFormulario= FormularioSiniestros()        
+        
+    return render(request, 'AppURC/formularioSiniestros.html',{'miFormulario':miFormulario})
