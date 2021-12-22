@@ -156,3 +156,35 @@ def eliminarExportaciones(request,paisDestino_eliminar):
     dic = {'Exportaciones':expos}
 
     return render(request, 'AppURC/readExportaciones.html', dic)
+
+
+def editarExportaciones(request,paisDestino_editar):
+
+    editarExportacion= export.objects.get(paisDestino=paisDestino_editar)
+
+    if request.method == "POST":
+
+        formulario = FormularioExportaciones(request.POST)
+
+        print(formulario)
+
+        if formulario.is_valid:
+
+            informacion = formulario.cleaned_data
+
+            editarExportacion.exportando = informacion["exportando"]
+            #editarExportacion.paisDestino = informacion["paisDestino"]
+            editarExportacion.clientes = informacion["clientes"]
+
+            
+            editarExportacion.save()
+
+            return render(request, 'AppURC/home.html')
+
+        else:
+
+            formulario = FormularioExportaciones(initial={'exportando':editarExportacion.exportando,'paisDestino':editarExportacion.paisDestino,'clientes':editarExportacion.clientes})
+
+        return render(request, "AppURC/editarExportaciones.html",{'formulario':formulario,'paisDestino_editar':paisDestino_editar})
+
+

@@ -25,11 +25,16 @@
 
             <button>
 
-                <a href="{% url 'eliminarExportaciones' x.paisDestino %}"> Eliminar registro</a>
+                <a href="{% url 'EliminarExportaciones' x.paisDestino %}"> Eliminar registro</a>
+            </button>
 
-
+            <button>
+                
+                <a href="{% url 'EditarExportaciones' x.paisDestino %}"> Editar registro</a>
 
             </button>
+
+            
 
 
         {% endfor %}

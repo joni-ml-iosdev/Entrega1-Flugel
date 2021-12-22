@@ -1,0 +1,49 @@
+{% extends 'AppURC/base.html' %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Formulario Exportaciones</h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+         {% if miFormulario.errors %}
+
+                <p style='color: red;'>Error al cargar los datos, por favor volve a intentarlo</p>
+
+        {% endif %}
+
+        <form action='/AppURC/editarExportaciones' method="POST"> {% csrf_token %}
+
+
+            <h2><br>Edita los datos que requieras <br><br> Muchas gracias!</b></h2>
+
+            <br>
+
+            <table>
+            
+                {{ formulario.as_table }}
+
+
+            </table>
+
+            
+            <input type="submit" value="Guardar">
+            
+            
+        </form>
+
+
+    {% endblock %}

@@ -26,6 +26,8 @@ urlpatterns = [
     
     path('readExportaciones', views.readExportaciones, name='ReadExportaciones' ),
 
-    path('eliminarExportaciones/<paisDestino_eliminar>', views.eliminarExportaciones, name='eliminarExportaciones' ),
+    path('eliminarExportaciones/<paisDestino_eliminar>/', views.eliminarExportaciones, name='EliminarExportaciones' ),
+
+    path('editarExportaciones/<paisDestino_editar>/', views.editarExportaciones, name='EditarExportaciones' ),
 
 ]
