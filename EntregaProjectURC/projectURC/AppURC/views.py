@@ -28,6 +28,9 @@ def exportaciones(request): #check
 
     return render(request, 'AppURC/exportaciones.html')
 
+def showLogin(request):
+    return render(request, "AppURC/login.html")
+
 def formularioAsegurado(request):
 
     
@@ -134,6 +137,17 @@ def formularioSiniestros(request):
         miFormulario= FormularioSiniestros()        
         
     return render(request, 'AppURC/formularioSiniestros.html',{'miFormulario':miFormulario})
+
+#TODO: Tomar tarea para mostrar una lista de coberturas. 
+def readCoberturas(request):
+
+    expos=export.objects.all() # traigo todas las exportaciones
+    
+    # para ver las expo en html, hay que mandarlas como contexto a través deun diccionario
+   
+    dic = {"Exportaciones": expos}
+
+    return render(request, 'AppURC/readExportaciones.html', dic)
 
 def readExportaciones(request):
 
