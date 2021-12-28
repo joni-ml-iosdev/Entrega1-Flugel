@@ -59,3 +59,19 @@ class Siniestros(models.Model):
 
         return f"Fecha Siniestro: {self.fechaSiniestro} | Reclamado: {self.reclamado} | Monto implicado: {self.montoImplicado} | Detalle: {self.detalle}"
 
+class Usuario(models.Model):
+    username: models.CharField(max_length=20)
+    name: models.CharField()
+    email: models.CharField()
+
+    def __str__(self) -> str:
+        return super().__str__()
+
+class Autenticacion(models.Model):
+    usuario: Usuario
+    password: models.CharField(max_length=20) 
+
+
+class Cliente(Usuario):
+    poliza: poliza 
+    
