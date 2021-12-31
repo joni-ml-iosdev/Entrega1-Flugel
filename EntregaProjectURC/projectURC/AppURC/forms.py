@@ -1,6 +1,8 @@
 from django import forms
 import datetime
 
+from django.forms.forms import Form
+
 
 class FormularioAsegurado(forms.Form):
 
@@ -19,3 +21,11 @@ class FormularioSiniestros(forms.Form):
     reclamado=forms.BooleanField()
     montoImplicado=forms.IntegerField()
     detalle=forms.CharField(max_length=140)
+
+class FormularioCoberturas(forms.Form):
+
+    tipo = forms.CharField(max_length=20)
+    numeroPoliza = forms.IntegerField()
+    fechaContratacion = forms.DateField()
+    fechaVigencia = forms.DateTimeField()
+    detalle = forms.CharField(max_length=40)

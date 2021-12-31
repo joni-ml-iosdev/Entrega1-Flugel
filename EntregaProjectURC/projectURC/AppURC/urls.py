@@ -23,6 +23,8 @@ urlpatterns = [
     path('busquedaDeAsegurado',views.busquedaDeAsegurado, name='BusquedaDeAsegurado'),
 
     path('buscarAseg/', views.buscarAseg),
+
+
     
     path('readExportaciones', views.readExportaciones, name='ReadExportaciones' ),
 
@@ -31,5 +33,10 @@ urlpatterns = [
     path('editarExportaciones/<paisDestino_editar>/', views.editarExportaciones, name='EditarExportaciones' ),
 
     path('login/',views.showLogin, name='login'),
+
+
+
+    path('readCoberturas/',views.readCoberturas, name="ReadCoberturas"),
+    path('formularioCoberturas/',views.formularioCoberturas,name="FormularioCoberturas"),
 
 ]

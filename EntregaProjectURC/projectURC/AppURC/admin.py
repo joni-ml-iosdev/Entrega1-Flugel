@@ -16,3 +16,5 @@ admin.site.register(Convenio)
 admin.site.register(Documentacion)
 
 admin.site.register(Siniestros)
+
+admin.site.register(Coberturas)

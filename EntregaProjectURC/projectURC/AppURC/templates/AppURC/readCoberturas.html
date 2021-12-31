@@ -2,7 +2,7 @@
 
 {% block titlePage %} 
 
-Exportaciones
+Coberturas 
 
 
 {% endblock titlePage %}
@@ -13,7 +13,7 @@ Exportaciones
 
     {% block contenido2 %}
         
-        <h1 class="mb-1">Exportaciones Registradas </h1>
+        <h1 class="mb-1">Registro de Coberturas </h1>
 
         
     {% endblock %}
@@ -23,13 +23,12 @@ Exportaciones
 
     {% block contenido %}
 
-        <br><p>A continuación podras ver el listado del listado de destinos y cantidad de clientes en cada uno:</p> <br>
-
-        {% for x in Exportaciones %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
+        <br><p>A continuación vas a poder ver el listado de coberturas y sus principales datos:</p> <br>
+        {% for x in Coberturas %}  
         <br>
         
-        <li>  {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
-
+            <li>  {{ x }} <br> </li> <!-- li muestra los elementos como una lista-->
+            <!--
             <button>
 
                 <a href="{% url 'EliminarExportaciones' x.paisDestino %}"> Eliminar registro</a>
@@ -40,13 +39,10 @@ Exportaciones
                 <a href="{% url 'EditarExportaciones' x.paisDestino %}"> Editar registro</a>
 
             </button>
-
-            
-
-
+            -->
         {% endfor %}
         <br>
         <br>
-        <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>
+            <a href="formularioCoberturas"> Tomar una nueva Cobertura (+) </a>
 
     {%endblock%}

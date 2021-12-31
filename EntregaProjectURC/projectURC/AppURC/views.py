@@ -1,7 +1,9 @@
+from django.db.models.fields import CommaSeparatedIntegerField
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppURC.models import Asegurado,export,Siniestros
-from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
+from AppURC.models import Asegurado,export,Siniestros,Coberturas
+from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros, FormularioCoberturas
+
 
 
 def home(request): #check
@@ -56,30 +58,6 @@ def formularioAsegurado(request):
         
     return render(request, 'AppURC/formularioAsegurado.html',{'miFormulario':miFormulario})
 
-def formularioExportaciones(request):
-
-    
-    if request.method == 'POST':
-
-        miFormulario2 = FormularioExportaciones (request.POST)
-
-        print(miFormulario2)
-
-        if miFormulario2.is_valid:
-
-            informacion = miFormulario2.cleaned_data
-
-            exportacionesInstancia = export (exportando=informacion["exportando"], paisDestino=informacion["paisDestino"], clientes=informacion["clientes"]) 
-
-            exportacionesInstancia.save()
-
-            return render(request, 'AppURC/home.html')
-
-    else:
-
-        miFormulario2= FormularioExportaciones()        
-        
-    return render(request, 'AppURC/formularioExportaciones.html',{'miFormulario2':miFormulario2})
 
 def busquedaDeAsegurado(request):
 
@@ -138,17 +116,21 @@ def formularioSiniestros(request):
         
     return render(request, 'AppURC/formularioSiniestros.html',{'miFormulario':miFormulario})
 
-#TODO: Tomar tarea para mostrar una lista de coberturas. 
-def readCoberturas(request):
 
-    expos=export.objects.all() # traigo todas las exportaciones
+#TODO: Tomar tarea para mostrar una lista de coberturas. 
+#def readCoberturas(request):
+
+   # expos=export.objects.all() # traigo todas las exportaciones
     
     # para ver las expo en html, hay que mandarlas como contexto a través deun diccionario
    
-    dic = {"Exportaciones": expos}
+   # dic = {"Exportaciones": expos}
 
-    return render(request, 'AppURC/readExportaciones.html', dic)
+    #return render(request, 'AppURC/readExportaciones.html', dic)
 
+
+
+# Vistas para solapa "Exportaciones y Destinos"
 def readExportaciones(request):
 
     expos=export.objects.all() # traigo todas las exportaciones
@@ -158,7 +140,6 @@ def readExportaciones(request):
     dic = {"Exportaciones": expos}
 
     return render(request, 'AppURC/readExportaciones.html', dic)
-
 
 def eliminarExportaciones(request,paisDestino_eliminar):
 
@@ -170,7 +151,6 @@ def eliminarExportaciones(request,paisDestino_eliminar):
     dic = {'Exportaciones':expos}
 
     return render(request, 'AppURC/readExportaciones.html', dic)
-
 
 def editarExportaciones(request,paisDestino_editar):
 
@@ -201,4 +181,70 @@ def editarExportaciones(request,paisDestino_editar):
 
         return render(request, "AppURC/editarExportaciones.html",{'formulario':formulario,'paisDestino_editar':paisDestino_editar})
 
+def formularioExportaciones(request):
 
+    
+    if request.method == 'POST':
+
+        miFormulario2 = FormularioExportaciones (request.POST)
+
+        print(miFormulario2)
+
+        if miFormulario2.is_valid:
+
+            informacion = miFormulario2.cleaned_data
+
+            exportacionesInstancia = export (exportando=informacion["exportando"], paisDestino=informacion["paisDestino"], clientes=informacion["clientes"]) 
+
+            exportacionesInstancia.save()
+
+            return render(request, 'AppURC/readExportaciones.html')
+
+    else:
+
+        miFormulario2= FormularioExportaciones()        
+        
+    return render(request, 'AppURC/formularioExportaciones.html',{'miFormulario2':miFormulario2})
+
+
+# Vistas para solapa "Registro de coberturas"
+def readCoberturas(request):
+
+    cober= Coberturas.objects.all() # traigo todas las Coberturas
+      
+    dic = {"Coberturas": cober} # se mandan como contextos, que son diccionarios
+
+    return render(request, 'AppURC/readCoberturas.html', dic)
+
+def formularioCoberturas(request):
+
+    if request.method == 'POST':
+
+        formulario = FormularioCoberturas (request.POST)
+
+        print(formulario)
+
+        if formulario.is_valid:
+
+            informacion = formulario.cleaned_data
+
+            coberturaInstancia = Coberturas (
+            
+                tipo = informacion ["tipo"],
+                numeroPoliza =  informacion ["numeroPoliza"],
+                fechaContratacion = informacion ["fechaContratacion"],
+                fechaVigencia = informacion ["fechaVigencia"],
+                detalle = informacion ["detalle"],
+            
+                
+                ) 
+
+            coberturaInstancia.save()
+
+            return render(request, 'AppURC/readCoberturas.html')
+
+    else:
+
+        formulario= FormularioCoberturas()        
+        
+    return render(request, 'AppURC/formularioCoberturas.html',{'formulario':formulario})
