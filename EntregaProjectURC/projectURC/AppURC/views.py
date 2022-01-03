@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from AppURC.models import Asegurado,export,Siniestros
+from AppURC.models import Asegurado,export,Siniestros, Autenticacion, Usuario
 from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
 
 
@@ -29,7 +29,13 @@ def exportaciones(request): #check
     return render(request, 'AppURC/exportaciones.html')
 
 def showLogin(request):
-    return render(request, "AppURC/login.html")
+    params = {
+        "title": "Iniciar Sesión",
+        "inputTitleEmail": "Correo electrónico",
+        "inputTitlePassword": "Contraseña",
+        "buttonTitleMainAction": "Iniciar"
+        }
+    return render(request, "AppURC/login.html", context=params)
 
 def formularioAsegurado(request):
 
@@ -190,7 +196,6 @@ def editarExportaciones(request,paisDestino_editar):
             #editarExportacion.paisDestino = informacion["paisDestino"]
             editarExportacion.clientes = informacion["clientes"]
 
-            
             editarExportacion.save()
 
             return render(request, 'AppURC/home.html')
@@ -202,3 +207,8 @@ def editarExportaciones(request,paisDestino_editar):
         return render(request, "AppURC/editarExportaciones.html",{'formulario':formulario,'paisDestino_editar':paisDestino_editar})
 
 
+def executeLogin(request):
+    emailInputDone= request.POST["inputEmail"]
+    passwordInputDone = request.POST["inputPassword"]
+    intentAutencion = Autenticacion.objects.create(usuario=emailInputDone, password=passwordInputDone)
+    return redirect('/AppURC/home')

@@ -16,3 +16,12 @@ admin.site.register(Convenio)
 admin.site.register(Documentacion)
 
 admin.site.register(Siniestros)
+
+admin.site.register(Usuario)
+
+admin.site.register(Cliente)
+
+admin.site.register(Autenticacion)
+
+
+
