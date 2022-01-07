@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('formularioExportaciones',views.formularioExportaciones, name='FormularioExportaciones'),
 
-    path('formularioSiniestros',views.formularioSiniestros, name='FormularioSiniestros'),
+    
     
     path('busquedaDeAsegurado',views.busquedaDeAsegurado, name='BusquedaDeAsegurado'),
 
@@ -35,8 +35,11 @@ urlpatterns = [
     path('login/',views.showLogin, name='login'),
 
 
+    path('readCoberturas/',views.readCoberturas, name='ReadCoberturas'),
 
-    path('readCoberturas/',views.readCoberturas, name="ReadCoberturas"),
-    path('formularioCoberturas/',views.formularioCoberturas,name="FormularioCoberturas"),
+    path('formularioCoberturas',views.formularioCoberturas,name="FormularioCoberturas"),
+
+
+    path('formularioSiniestros',views.formularioSiniestros, name='FormularioSiniestros'),
 
 ]

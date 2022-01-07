@@ -14,7 +14,7 @@ Nueva cobertura
 
     {% block contenido2 %}
         
-        <h1 class="mb-1">Formulario De requisitos Exportador</h1>
+        <h1 class="mb-1">Solicitud de nueva cobertura</h1>
 
         
 
@@ -31,10 +31,10 @@ Nueva cobertura
 
         {% endif %}
 
-        <form action='/AppURC/formularioCoberturas/' method="POST"> {% csrf_token %}
+        <form action='/AppURC/formularioCoberturas' method="POST"> {% csrf_token %}
 
             
-            <h2><br>Te pedimos que completes los siguientes datos sobre tu estado exportador. <br></h2>
+            <h2><br>Para dar de alta una nueva cobertura, te pedimos completes los siguientes campos <br></h2>
 
 
             <table>

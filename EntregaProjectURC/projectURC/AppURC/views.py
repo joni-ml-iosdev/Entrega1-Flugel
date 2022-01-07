@@ -6,6 +6,13 @@ from AppURC.forms import FormularioAsegurado, FormularioExportaciones, Formulari
 
 
 
+
+
+
+
+
+
+
 def home(request): #check
 
     return render(request, 'AppURC/home.html')
@@ -81,40 +88,7 @@ def buscarAseg(request):
 
     return HttpResponse(respuestaAsg)
 
-def formularioSiniestros(request):
 
-        
-    if request.method == 'POST':
-
-        miFormulario = FormularioSiniestros (request.POST)
-
-        print(miFormulario)
-
-        if miFormulario.is_valid:
-
-            informacion = miFormulario.cleaned_data
-
-            siniestrosInstancia = Siniestros (
-
-                fechaSiniestro=informacion["fechaSiniestro"],
-
-                reclamado=informacion["reclamado"],
-
-                montoImplicado=informacion["montoImplicado"],
-                
-                detalle=informacion["detalle"],
-
-            ) 
-
-            siniestrosInstancia.save()
-
-            return render(request, 'AppURC/home.html')
-
-    else:
-
-        miFormulario= FormularioSiniestros()        
-        
-    return render(request, 'AppURC/formularioSiniestros.html',{'miFormulario':miFormulario})
 
 
 #TODO: Tomar tarea para mostrar una lista de coberturas. 
@@ -208,13 +182,6 @@ def formularioExportaciones(request):
 
 
 # Vistas para solapa "Registro de coberturas"
-def readCoberturas(request):
-
-    cober= Coberturas.objects.all() # traigo todas las Coberturas
-      
-    dic = {"Coberturas": cober} # se mandan como contextos, que son diccionarios
-
-    return render(request, 'AppURC/readCoberturas.html', dic)
 
 def formularioCoberturas(request):
 
@@ -236,7 +203,6 @@ def formularioCoberturas(request):
                 fechaVigencia = informacion ["fechaVigencia"],
                 detalle = informacion ["detalle"],
             
-                
                 ) 
 
             coberturaInstancia.save()
@@ -248,3 +214,54 @@ def formularioCoberturas(request):
         formulario= FormularioCoberturas()        
         
     return render(request, 'AppURC/formularioCoberturas.html',{'formulario':formulario})
+
+def readCoberturas(request):
+
+    cobert = Coberturas.objects.all()
+
+    dicCoberturas = {"Coberturas": cobert}
+
+    return render(request, "AppURC/readCoberturas.html", dicCoberturas)
+
+
+
+
+#vistas para nueva solapa "Registro de Siniestros"
+
+def formularioSiniestros(request):
+
+        
+    if request.method == 'POST':
+
+        miFormulario = FormularioSiniestros (request.POST)
+
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            siniestrosInstancia = Siniestros (
+
+                fechaSiniestro=informacion["fechaSiniestro"],
+
+                reclamado=informacion["reclamado"],
+
+                montoImplicado=informacion["montoImplicado"],
+                
+                detalle=informacion["detalle"],
+
+            ) 
+
+            siniestrosInstancia.save()
+
+            return render(request, 'AppURC/home.html')
+
+    else:
+
+        miFormulario= FormularioSiniestros()        
+        
+    return render(request, 'AppURC/formularioSiniestros.html',{'miFormulario':miFormulario})
+
+
+

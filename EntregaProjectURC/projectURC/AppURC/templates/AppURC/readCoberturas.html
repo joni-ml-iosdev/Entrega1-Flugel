@@ -2,47 +2,34 @@
 
 {% block titlePage %} 
 
-Coberturas 
+Coberturas
 
 
 {% endblock titlePage %}
+
+
 
 {% load static %}
 
 
 
-    {% block contenido2 %}
-        
-        <h1 class="mb-1">Registro de Coberturas </h1>
+{% block contenido2 %}
+    
+    <h1 class="mb-1">Bienvenidos a URC</h1>
 
-        
-    {% endblock %}
+    <h2>Asesores expertos en coberturas de exportacion</h2>
+
+{% endblock %}
 
 
 
 
-    {% block contenido %}
+{% block contenido %}
 
-        <br><p>A continuación vas a poder ver el listado de coberturas y sus principales datos:</p> <br>
-        {% for x in Coberturas %}  
-        <br>
-        
-            <li>  {{ x }} <br> </li> <!-- li muestra los elementos como una lista-->
-            <!--
-            <button>
+    {% for c in Coberturas %}
+    
+        <li>{{ c }}</li>
 
-                <a href="{% url 'EliminarExportaciones' x.paisDestino %}"> Eliminar registro</a>
-            </button>
+    {% endfor %}
 
-            <button>
-                
-                <a href="{% url 'EditarExportaciones' x.paisDestino %}"> Editar registro</a>
-
-            </button>
-            -->
-        {% endfor %}
-        <br>
-        <br>
-            <a href="formularioCoberturas"> Tomar una nueva Cobertura (+) </a>
-
-    {%endblock%}
+{% endblock %}

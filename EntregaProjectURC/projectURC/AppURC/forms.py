@@ -26,6 +26,6 @@ class FormularioCoberturas(forms.Form):
 
     tipo = forms.CharField(max_length=20)
     numeroPoliza = forms.IntegerField()
-    fechaContratacion = forms.DateField()
-    fechaVigencia = forms.DateTimeField()
+    fechaContratacion = forms.DateField(initial=datetime.date.today)
+    fechaVigencia = forms.DateTimeField(initial= datetime.date.today)
     detalle = forms.CharField(max_length=40)
