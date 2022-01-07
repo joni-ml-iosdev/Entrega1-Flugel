@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.db import models
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponse, Http404
 from AppURC.models import Asegurado,export,Siniestros, Usuario
 from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
 from django.contrib.auth.forms import UserCreationForm
@@ -38,6 +39,20 @@ def showLogin(request):
         "buttonTitleMainAction": "Iniciar"
         }
     return render(request, "AppURC/login.html", context=params)
+
+
+def showRegister(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+    else:
+        form = UserCreationForm()
+    
+    params = { 'form' : form }
+    return render(request, "register.html", context = params)
 
 def formularioAsegurado(request):
 
@@ -208,21 +223,15 @@ def editarExportaciones(request,paisDestino_editar):
 
         return render(request, "AppURC/editarExportaciones.html",{'formulario':formulario,'paisDestino_editar':paisDestino_editar})
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            messages.success(request, f'Usuario {username} creado')
-    else:
-        form = UserCreationForm()
-    
-    context = { 'form' : form }
-    return render(request, '/AppURC/register.html', context)
-
 def executeLogin(request):
     emailInputDone= request.POST["inputEmail"]
     passwordInputDone = request.POST["inputPassword"]
+    userFound = get_object_or_404(Usuario, email=emailInputDone)
 
-    return redirect('/AppURC/home')
+    if not userFound:
+        raise Http404("No Usuario matches the given query.")
+
+    if (userFound.password == passwordInputDone):
+        return redirect('/AppURC/home')
+    
+    return redirect('/AppURC/register')

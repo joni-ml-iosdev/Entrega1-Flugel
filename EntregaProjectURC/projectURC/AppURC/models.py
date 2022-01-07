@@ -60,7 +60,7 @@ class Siniestros(models.Model):
         return f"Fecha Siniestro: {self.fechaSiniestro} | Reclamado: {self.reclamado} | Monto implicado: {self.montoImplicado} | Detalle: {self.detalle}"
 
 class Usuario(models.Model):
-    name = models.CharField(max_length=20)
+    username = models.CharField(max_length=20)
     email= models.CharField(max_length=20)
     password = models.CharField(max_length=20)
 
@@ -70,3 +70,6 @@ class Usuario(models.Model):
 class Cliente(Usuario):
     poliza = poliza 
     
+class Autentication(models.Model):
+    email: models.CharField(max_length=20)
+    password: models.CharField(max_length=20)        
