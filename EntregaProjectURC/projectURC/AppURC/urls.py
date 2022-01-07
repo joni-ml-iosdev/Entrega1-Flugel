@@ -32,6 +32,8 @@ urlpatterns = [
 
     path('login/',views.showLogin, name='login'),
 
-    path('executeLogin/', views.executeLogin)
+    path('executeLogin/', views.executeLogin),
+
+    path('register/', views.register, name="register"),
 
 ]

@@ -21,7 +21,5 @@ admin.site.register(Usuario)
 
 admin.site.register(Cliente)
 
-admin.site.register(Autenticacion)
-
 
 

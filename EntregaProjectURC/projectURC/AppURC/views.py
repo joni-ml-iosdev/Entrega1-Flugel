@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from AppURC.models import Asegurado,export,Siniestros, Autenticacion, Usuario
+from AppURC.models import Asegurado,export,Siniestros, Usuario
 from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 def home(request): #check
@@ -206,9 +208,21 @@ def editarExportaciones(request,paisDestino_editar):
 
         return render(request, "AppURC/editarExportaciones.html",{'formulario':formulario,'paisDestino_editar':paisDestino_editar})
 
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+    else:
+        form = UserCreationForm()
+    
+    context = { 'form' : form }
+    return render(request, '/AppURC/register.html', context)
 
 def executeLogin(request):
     emailInputDone= request.POST["inputEmail"]
     passwordInputDone = request.POST["inputPassword"]
-    intentAutencion = Autenticacion.objects.create(usuario=emailInputDone, password=passwordInputDone)
+
     return redirect('/AppURC/home')
