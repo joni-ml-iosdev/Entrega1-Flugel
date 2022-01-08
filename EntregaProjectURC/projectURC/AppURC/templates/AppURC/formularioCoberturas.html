@@ -1,7 +1,8 @@
 {% extends 'AppURC/base.html' %}
+
 {% block titlePage %} 
 
-Nuevo Destino 
+Nueva cobertura 
 
 
 {% endblock titlePage %}
@@ -13,7 +14,7 @@ Nuevo Destino
 
     {% block contenido2 %}
         
-        <h1 class="mb-1">Formulario De requisitos Exportador</h1>
+        <h1 class="mb-1">Solicitud de nueva cobertura</h1>
 
         
 
@@ -24,21 +25,21 @@ Nuevo Destino
 
     {% block contenido %}
 
-         {% if miFormulario.errors %}
+         {% if formulario.errors %}
 
                 <p style='color: red;'>Error al cargar los datos, por favor volve a intentarlo</p>
 
         {% endif %}
 
-        <form action='/AppURC/formularioExportaciones' method="POST"> {% csrf_token %}
+        <form action='/AppURC/formularioCoberturas' method="POST"> {% csrf_token %}
 
-
-            <h2><br>Te pedimos que completes los siguientes datos sobre tu estado exportador. <br></h2>
+            
+            <h2><br>Para dar de alta una nueva cobertura, te pedimos completes los siguientes campos <br></h2>
 
 
             <table>
             
-                {{ miFormulario2.as_table }}
+                {{ formulario.as_table }}
 
                 
 
@@ -50,10 +51,16 @@ Nuevo Destino
             
         </form>
 
+
+
         <br>
         <br>
         <br>
+
+
+
         <button>
             <a href="home"> Cancelar - Volver al inicio</a>
         </button>
+
     {% endblock %}

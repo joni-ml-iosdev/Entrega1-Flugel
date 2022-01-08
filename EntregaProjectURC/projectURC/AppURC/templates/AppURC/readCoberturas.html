@@ -1,0 +1,35 @@
+{% extends 'AppURC/base.html' %}
+
+{% block titlePage %} 
+
+Coberturas
+
+
+{% endblock titlePage %}
+
+
+
+{% load static %}
+
+
+
+{% block contenido2 %}
+    
+    <h1 class="mb-1">Bienvenidos a URC</h1>
+
+    <h2>Asesores expertos en coberturas de exportacion</h2>
+
+{% endblock %}
+
+
+
+
+{% block contenido %}
+
+    {% for c in Coberturas %}
+    
+        <li>{{ c }}</li>
+
+    {% endfor %}
+
+{% endblock %}

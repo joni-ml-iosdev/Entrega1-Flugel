@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import DateField
 
 # Create your models here.
 
@@ -66,10 +67,26 @@ class Usuario(models.Model):
 
     def __str__(self) -> str:
         return f"Usuario: {self.username}"
-    
+
+class Autenticacion(models.Model):
+    usuario: Usuario
+    password: models.CharField(max_length=20) 
+
 class Cliente(Usuario):
     poliza = poliza 
     
 class Autentication(models.Model):
     email: models.CharField(max_length=20)
-    password: models.CharField(max_length=20)        
+    password: models.CharField(max_length=20)
+
+class Coberturas(models.Model):
+
+    tipo = models.CharField(max_length=20)
+    numeroPoliza = models.IntegerField()
+    fechaContratacion = models.DateField()
+    fechaVigencia = models.DateTimeField()
+    detalle = models.CharField(max_length=40)
+
+    def __str__(self):
+        
+         return f"Tipo de Cobertura: {self.tipo} | Poliza n°: {self.numeroPoliza} | Fecha alta: {self.fechaContratacion} | Vigencia hasta: {self.fechaVigencia} | Detalle: {self.detalle}"

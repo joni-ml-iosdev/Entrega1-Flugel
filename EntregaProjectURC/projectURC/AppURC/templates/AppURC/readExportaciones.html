@@ -1,6 +1,11 @@
 {% extends 'AppURC/base.html' %}
 
+{% block titlePage %} 
 
+Exportaciones
+
+
+{% endblock titlePage %}
 
 {% load static %}
 
@@ -18,10 +23,12 @@
 
     {% block contenido %}
 
+        <br><p>A continuación podras ver el listado de destinos y cantidad de clientes en cada uno:</p> <br>
 
         {% for x in Exportaciones %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
+        <br>
         
-            <li> {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
+        <li>  {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
 
             <button>
 
