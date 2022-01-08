@@ -3,7 +3,7 @@ from django.db import models
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, Http404
 from AppURC.models import Asegurado,export,Siniestros, Usuario, Coberturas
-from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
+from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros, FormularioCoberturas
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
@@ -211,7 +211,7 @@ def formularioCoberturas(request):
 
     if request.method == 'POST':
 
-        formulario = FormularioCoberturas (request.POST)
+        formulario = FormularioCoberturas(request.POST)
 
         print(formulario)
 
