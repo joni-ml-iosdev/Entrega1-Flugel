@@ -71,9 +71,6 @@ class Usuario(models.Model):
 class Autenticacion(models.Model):
     usuario: Usuario
     password: models.CharField(max_length=20) 
-
-class Cliente(Usuario):
-    poliza = poliza 
     
 class Autentication(models.Model):
     email: models.CharField(max_length=20)
