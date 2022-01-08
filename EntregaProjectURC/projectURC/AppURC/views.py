@@ -1,17 +1,11 @@
 from django.db.models.fields import CommaSeparatedIntegerField
-from django.shortcuts import render
-from django.http import HttpResponse
-from AppURC.models import Asegurado,export,Siniestros,Coberturas
-from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros, FormularioCoberturas
-
-
-
-
-
-
-
-
-
+from django.db import models
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponse, Http404
+from AppURC.models import Asegurado,export,Siniestros, Usuario, Coberturas
+from AppURC.forms import FormularioAsegurado, FormularioExportaciones, FormularioSiniestros
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 def home(request): #check
 
@@ -38,7 +32,27 @@ def exportaciones(request): #check
     return render(request, 'AppURC/exportaciones.html')
 
 def showLogin(request):
-    return render(request, "AppURC/login.html")
+    params = {
+        "title": "Iniciar Sesión",
+        "inputTitleEmail": "Correo electrónico",
+        "inputTitlePassword": "Contraseña",
+        "buttonTitleMainAction": "Iniciar"
+        }
+    return render(request, "AppURC/login.html", context=params)
+
+
+def showRegister(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+    else:
+        form = UserCreationForm()
+    
+    params = { 'form' : form }
+    return render(request, "register.html", context = params)
 
 def formularioAsegurado(request):
 
@@ -144,7 +158,6 @@ def editarExportaciones(request,paisDestino_editar):
             #editarExportacion.paisDestino = informacion["paisDestino"]
             editarExportacion.clientes = informacion["clientes"]
 
-            
             editarExportacion.save()
 
             return render(request, 'AppURC/home.html')
@@ -154,6 +167,17 @@ def editarExportaciones(request,paisDestino_editar):
             formulario = FormularioExportaciones(initial={'exportando':editarExportacion.exportando,'paisDestino':editarExportacion.paisDestino,'clientes':editarExportacion.clientes})
 
         return render(request, "AppURC/editarExportaciones.html",{'formulario':formulario,'paisDestino_editar':paisDestino_editar})
+
+def executeLogin(request):
+    emailInputDone= request.POST["inputEmail"]
+    passwordInputDone = request.POST["inputPassword"]
+    userFound = get_object_or_404(Usuario, email=emailInputDone)
+    
+    if not userFound:
+        raise Http404("No Usuario matches the given query.")
+    
+    if (userFound.password == passwordInputDone):
+        return redirect('/AppURC/home')
 
 def formularioExportaciones(request):
 

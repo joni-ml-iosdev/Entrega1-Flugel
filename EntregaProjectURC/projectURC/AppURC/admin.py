@@ -18,3 +18,12 @@ admin.site.register(Documentacion)
 admin.site.register(Siniestros)
 
 admin.site.register(Coberturas)
+
+admin.site.register(Usuario)
+
+admin.site.register(Cliente)
+
+admin.site.register(Autentication)
+
+
+
