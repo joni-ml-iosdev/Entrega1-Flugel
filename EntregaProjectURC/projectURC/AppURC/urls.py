@@ -4,6 +4,8 @@ from AppURC import views
 urlpatterns = [
     path('home',views.home, name='Home'),
 
+    path('',views.home, name='Home'),
+
     path('ficha',views.datosAsegurado, name='DatosAsegurado'),
 
     path('coberturas',views.coberturas, name='Coberturas'),
