@@ -8,7 +8,7 @@ class poliza(models.Model): # con vista coberturas/template coberturas
     poliza_id = models.AutoField(primary_key=True)
     companiaAseg = models.CharField(max_length=40)
     montoAsegurado = models.IntegerField()
-    coberturas = models.ManyToManyField("Cobertura")
+    coberturas = models.ManyToManyField("Cobertura", null=True, blank=True)
 
     def __str__(self): # me sirve para ver en admin la info cargada
 
@@ -69,7 +69,7 @@ class Usuario(models.Model):
     password = models.CharField(max_length=200)
     
     def __str__(self) -> str:
-        return f"Usuario: {self.username}, email: {self.email}"
+        return f"ID: {self.usuario_id} | Usuario: {self.username} | email: {self.email}"
 
 class Autenticacion(models.Model):
     usuario: Usuario
@@ -77,8 +77,10 @@ class Autenticacion(models.Model):
 
 class Cliente(models.Model):
     identification = models.OneToOneField("Usuario", null=True ,blank=True, on_delete=models.RESTRICT)
-    polizas_id = models.ManyToManyField(poliza, null=True)
-
+    polizas_id = models.ManyToManyField(poliza, null=True, blank=True)
+    
+    def __str__(self) -> str:
+        return f"ID Cliente: {self.identification}, Polizas: {self.polizas_id}"
     
 class Autentication(models.Model):
     email: models.CharField(max_length=20)
@@ -92,7 +94,7 @@ class Cobertura(models.Model):
         on_delete=models.RESTRICT
         )
     fechaContratacion = models.DateField()
-    fechaVigencia = models.DateTimeField()
+    fechaVigencia = models.DateField()
     detalle = models.CharField(max_length=40)
 
     def __str__(self):

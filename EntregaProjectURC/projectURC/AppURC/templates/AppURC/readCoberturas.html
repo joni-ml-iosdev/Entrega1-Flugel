@@ -26,10 +26,36 @@ Coberturas
 
 {% block contenido %}
 
-    {% for c in Coberturas %}
-    
-        <li>{{ c }}</li>
-
-    {% endfor %}
+    {% if Coberturas %}
+            <thead>
+                <tr>
+                    <th>tipo</th>
+                    <th>numeroPoliza</th>
+                    <th>fechaContratacion</th>
+                    <th>fechaVigencia</th>
+                    <th>detalle</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in Coberturas%}
+                <tr>
+                    <!--
+                    <td>{{Coberturas.Tipo}}</td>
+                    <td>{{Coberturas.numeroPoliza}}</td>
+                    <td>{{Coberturas.fechaContratacion}}</td>
+                    <td>{{Coberturas.fechaVigencia}</td>
+                    <td>{{Coberturas.detalle}}</td>
+                    -->
+                    <li>{{ c }} <br></li>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        
+    {% else %}
+        <h2>No hay coberturas registradas</h2>
+        
+    {% endif %}
 
 {% endblock %}

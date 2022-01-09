@@ -242,10 +242,8 @@ def formularioCoberturas(request):
 def readCoberturas(request):
 
     cobert = Cobertura.objects.all()
-
-    dicCoberturas = {"Coberturas": cobert}
-
-    return render(request, "AppURC/readCoberturas.html", dicCoberturas)
+        
+    return render(request, "AppURC/readCoberturas.html", {"Coberturas": cobert})
 
 
 
