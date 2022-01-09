@@ -4,9 +4,11 @@ from django.db.models.fields import DateField
 # Create your models here.
 
 class poliza(models.Model): # con vista coberturas/template coberturas
-    
+    cliente_id = models.OneToOneField("Cliente", null=True ,blank=True, on_delete=models.RESTRICT)
+    poliza_id = models.AutoField(primary_key=True)
     companiaAseg = models.CharField(max_length=40)
     montoAsegurado = models.IntegerField()
+    coberturas = models.ManyToManyField("Cobertura")
 
     def __str__(self): # me sirve para ver en admin la info cargada
 
@@ -61,28 +63,34 @@ class Siniestros(models.Model):
         return f"Fecha Siniestro: {self.fechaSiniestro} | Reclamado: {self.reclamado} | Monto implicado: {self.montoImplicado} | Detalle: {self.detalle}"
 
 class Usuario(models.Model):
-    username = models.CharField(max_length=20)
-    email= models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
-
+    usuario_id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=200)
+    email= models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    
     def __str__(self) -> str:
-        return f"Usuario: {self.username}"
+        return f"Usuario: {self.username}, email: {self.email}"
 
 class Autenticacion(models.Model):
     usuario: Usuario
     password: models.CharField(max_length=20) 
 
-class Cliente(Usuario):
-    poliza = poliza 
+class Cliente(models.Model):
+    identification = models.OneToOneField("Usuario", null=True ,blank=True, on_delete=models.RESTRICT)
+    polizas_id = models.ManyToManyField(poliza, null=True)
+
     
 class Autentication(models.Model):
     email: models.CharField(max_length=20)
     password: models.CharField(max_length=20)
 
-class Coberturas(models.Model):
+class Cobertura(models.Model):
 
     tipo = models.CharField(max_length=20)
-    numeroPoliza = models.IntegerField()
+    numeroPoliza = models.OneToOneField(
+        poliza, 
+        on_delete=models.RESTRICT
+        )
     fechaContratacion = models.DateField()
     fechaVigencia = models.DateTimeField()
     detalle = models.CharField(max_length=40)
@@ -90,3 +98,4 @@ class Coberturas(models.Model):
     def __str__(self):
         
          return f"Tipo de Cobertura: {self.tipo} | Poliza n°: {self.numeroPoliza} | Fecha alta: {self.fechaContratacion} | Vigencia hasta: {self.fechaVigencia} | Detalle: {self.detalle}"
+

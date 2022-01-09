@@ -17,7 +17,7 @@ admin.site.register(Documentacion)
 
 admin.site.register(Siniestros)
 
-admin.site.register(Coberturas)
+admin.site.register(Cobertura)
 
 admin.site.register(Usuario)
 
