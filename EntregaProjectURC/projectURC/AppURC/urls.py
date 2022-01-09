@@ -1,6 +1,6 @@
 from django.urls import path
 from AppURC import views
-from .views_src import home_view, login_view
+from .views_src import home_view, login_view,exportaciones_view
 
 urlpatterns = [
     path('home/<int:loginId>', home_view.show_home, name='Home'),
