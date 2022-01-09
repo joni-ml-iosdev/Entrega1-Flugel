@@ -241,7 +241,7 @@ def formularioCoberturas(request):
 
 def readCoberturas(request):
 
-    cobert = Coberturas.objects.all()
+    cobert = Cobertura.objects.all()
 
     dicCoberturas = {"Coberturas": cobert}
 
