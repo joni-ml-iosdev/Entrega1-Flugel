@@ -8,6 +8,8 @@ urlpatterns = [
     path('<int:loginId>', home_view.show_home, name='Home'),
     
     path('', home_view.show_home, name='Home'),
+    
+    path('home', home_view.show_home, name='Home'),
 
     path('ficha', views.datosAsegurado, name='DatosAsegurado'),
 

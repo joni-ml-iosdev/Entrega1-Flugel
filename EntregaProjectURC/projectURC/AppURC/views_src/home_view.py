@@ -17,5 +17,10 @@ def show_home(request, userId: int = 0):
         
         return render(request, 'AppURC/home.html', context=contextHome)
     
-    
+    if request.method == 'GET':
+
+        return render(request, 'AppURC/home.html')
+
+def home(request):
+
     return render(request, 'AppURC/home.html')
