@@ -11,14 +11,14 @@
         <div id="login-row" class="row justify-content-center align-items-center">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <form action="/AppURC/executeLogin/" method="post">{% csrf_token %}
+                    <form action="/execute_login/" method="post">{% csrf_token %}
                         <div class="mb-3 form-label">
-                          <label for="exampleInputEmail1" class="form-label">{{ inputTitleEmail }}</label>
+                          <label for="inputemail" class="form-label">{{ inputTitleEmail }}</label>
                           <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp">
                           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div class="mb-3 form-label">
-                          <label for="exampleInputPassword1" class="form-label">{{ inputTitlePassword }}</label>
+                          <label for="inputPassword" class="form-label">{{ inputTitlePassword }}</label>
                           <input type="password" class="form-control" name="inputPassword" id="inputPassword">
                         </div>
                         <div class="mb-3 form-check">
