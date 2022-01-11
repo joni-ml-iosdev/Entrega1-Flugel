@@ -1,6 +1,6 @@
 from django.urls import path
 from AppURC import views
-from .views_src import home_view, login_view,exportaciones_view
+from .views_src import home_view, login_view,exportaciones_view, siniestros_view
 
 urlpatterns = [
     path('home/<int:loginId>', home_view.show_home, name='Home'),
@@ -43,6 +43,8 @@ urlpatterns = [
 
     path('formularioCoberturas', views.formularioCoberturas, name="FormularioCoberturas"),
 
-    path('formularioSiniestros', views.formularioSiniestros, name='FormularioSiniestros'),
+    path('formularioSiniestros', siniestros_view.formularioSiniestros, name='FormularioSiniestros'),
+
+    path('leerSiniestros/',siniestros_view.leerSiniestros,name="LeerSiniestros"),
 
 ]

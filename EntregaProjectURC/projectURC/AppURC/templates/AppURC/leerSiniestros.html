@@ -1,0 +1,40 @@
+{% extends 'AppURC/base.html' %}
+
+
+{% block titlePage %} 
+
+Registro Siniestros
+
+
+{% endblock titlePage %}
+
+
+
+{% load static %}
+
+
+
+    {% block contenido2 %}
+        
+        <h1 class="mb-1">Registro de Siniestros</h1>
+
+        
+
+    {% endblock %}
+
+
+
+
+    {% block contenido %}
+
+
+        <h1>Enfocate en seguir creciendo</h1>
+
+        {% for s in Siniestros %}
+
+            <li>
+                {{ s }}
+            </li>
+        {% endfor %}
+
+    {% endblock %}

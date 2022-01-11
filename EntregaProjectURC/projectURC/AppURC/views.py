@@ -148,7 +148,7 @@ def editarExportaciones(request, paisDestino_editar):
 
             editarExportacion.save()
 
-            return render(request, 'AppURC/home.html')
+            return render(request, 'AppURC/home.html') 
 
         else:
 
