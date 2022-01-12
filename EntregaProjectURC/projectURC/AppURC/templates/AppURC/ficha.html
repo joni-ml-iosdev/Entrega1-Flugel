@@ -5,29 +5,41 @@
 {% load static %}
 
 
-    {% block contenido2 %}
-        
-        <h1 class="mb-1">Datos del Asegurado</h1>
+{% block contenido2 %}
 
-        <h2>Accede a toda tu información y más</h2>
+<h1 class="mb-1">Datos del Asegurado</h1>
 
-    {% endblock %}
+<h2>Accede a toda tu información y más</h2>
 
-
+{% endblock %}
 
 
-    {% block contenido %}
 
-        <br><p>Sarasa</p> <br>
 
-        {% for x in fichas %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
-        <br>
-        
-        <li>  {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
-        <p>x</p>
-        {% endfor %}
-        <br>
-        <br>
-        <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>
+{% block contenido %}
 
-    {%endblock%}
+<div class="container mt-3">
+    <h2>Datos de {{ user.get_username}}</h2>
+    <p>Resumen de polizas y coberturas</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Compania Asegurada</th>
+                <th>Monto Asegurado</th>
+                <th>Cobertura</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ficha in fichas %}
+            <tr>
+                <td>{{ ficha.companiaAseg }}</td>
+                <td>{{ ficha.montoAsegurado }}</td>
+                <td>Vencida</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>
+</div>
+
+{%endblock%}

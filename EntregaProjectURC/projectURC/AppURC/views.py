@@ -13,9 +13,15 @@ from django.contrib import messages
 
 def datosAsegurado(request):  # check
     current_user = request.user
-    data = poliza.objects.all()
+    data = list(poliza.objects.all())
+    polizas = []
+    
+    for unaData in data:
+        if unaData.cliente_id.id == current_user.pk:
+            polizas.append(unaData)
+            
     context = {
-        'fichas' : data
+        'fichas' : polizas
     }
     return render(request, 'AppURC/ficha.html', context)
 
