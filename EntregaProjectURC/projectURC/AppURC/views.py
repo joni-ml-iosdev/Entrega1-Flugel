@@ -220,7 +220,7 @@ def formularioCoberturas(request):
 def readCoberturas(request):
     cobert = Cobertura.objects.all()
         
-    return render(request, "AppURC/readCoberturas.html", {"Coberturas": cobert})
+    return render(request, "ReadCoberturas", {"Coberturas": cobert})
 
 
 # vistas para nueva solapa "Registro de Siniestros"

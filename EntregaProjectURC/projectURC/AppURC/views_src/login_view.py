@@ -1,35 +1,43 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-
-from AppURC.models import Usuario
+from django.contrib.auth import authenticate, login, logout
 from AppURC.views_src import home_view
 
 def show_login(request):
     """Mostramos la pantalla para loguearse"""
-    params = {
-        "title": "Iniciar Sesión",
-        "inputTitleEmail": "Correo electrónico",
-        "inputTitlePassword": "Contraseña",
-        "buttonTitleMainAction": "Iniciar"
-    }
-    return render(request, "AppURC/login.html", context=params)
+        # si esta loguado lo mandamos a la home
+    if request.user.is_authenticated:
+        return redirect('Home')
+    
+    if request.method == 'POST':
+        execute_login(request)
+    else:        
+        params = {
+            "title": "Iniciar Sesión",
+            "inputTitleEmail": "Usuario",
+            "inputTitlePassword": "Contraseña",
+            "buttonTitleMainAction": "Iniciar"
+        }
+            
+        return render(request, "AppURC/login.html", context=params)
 
 
 def execute_login(request):
     """Ejecutamos el login y si el resultado es OK lo envamos a la Home, caso contrario
     mostraermos un mensaje custom 404
     """
-    if not request.POST:
-        raise Http404("Solicitud invalida")
-
-    emailInputDone = request.POST["inputEmail"]
-    passwordInputDone = request.POST["inputPassword"]
-    userFound = get_object_or_404(Usuario, email=emailInputDone)
+    if request.method == 'POST':
+        usernameInput = request.POST["usernameInput"]
+        passwordInput = request.POST["inputPassword"]
+        user = authenticate(request, username=usernameInput,password=passwordInput)    
         
-    if not userFound:
-        raise Http404("No Usuario matches the given query.")
+        if user is not None:
+            login(request=request, user=user)
+            return redirect('Home')
+        else:
+            Http404("No pudimos loguear al usuario, vualva a intentar")
 
-    if userFound.password == passwordInputDone:
-        return home_view.show_home(request, userFound.usuario_id)
-    else:
-        raise Http404("Usuario o clave invalida")
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')

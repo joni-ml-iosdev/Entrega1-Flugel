@@ -1,15 +1,9 @@
 from django.urls import path
 from AppURC import views
-from .views_src import home_view, login_view,exportaciones_view, siniestros_view
+from .views_src import home_view, login_view, exportaciones_view, siniestros_view, register_view
 
 urlpatterns = [
-    path('home/<int:loginId>', home_view.show_home, name='Home'),
-
-    path('<int:loginId>', home_view.show_home, name='Home'),
-    
-    path('', home_view.show_home, name='Home'),
-    
-    path('home', home_view.show_home, name='Home'),
+    path('home', home_view.home, name='Home'),
 
     path('ficha', views.datosAsegurado, name='DatosAsegurado'),
 
@@ -36,8 +30,10 @@ urlpatterns = [
     path('editarExportaciones/<paisDestino_editar>/', views.editarExportaciones, name='EditarExportaciones'),
 
     path('login/', login_view.show_login, name='login'),
+    
+    path('execute-login/', login_view.execute_login, name='execute-login'),
 
-    path('execute_login/', login_view.execute_login, name='execute_login'),
+    path('logout/', login_view.logoutUser, name='logout'),
 
     path('readCoberturas/', views.readCoberturas, name='ReadCoberturas'),
 
@@ -46,5 +42,8 @@ urlpatterns = [
     path('formularioSiniestros', siniestros_view.formularioSiniestros, name='FormularioSiniestros'),
 
     path('leerSiniestros/',siniestros_view.leerSiniestros,name="LeerSiniestros"),
+    
+    path('register/',register_view.register,name="register"),
+
 
 ]
