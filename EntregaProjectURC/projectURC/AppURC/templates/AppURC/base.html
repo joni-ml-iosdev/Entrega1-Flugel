@@ -33,8 +33,9 @@
     
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
+            <p>Bienvenido {{ user.get_username }}</p>
             <li class="sidebar-brand"><a href="#page-top">Menu de opciones</a></li>
-            <li class="sidebar-nav-item"><a href="home">Home</a></li>
+            <li class="sidebar-nav-item"><a href="/AppURC/home">Home</a></li>
             <li class="sidebar-nav-item">
                 <a href="ficha">Datos de Asegurados</a>
             </li>
@@ -48,7 +49,7 @@
                 <a href="readExportaciones">Exportciones y destinos</a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="formularioSiniestros">Registro de Siniestros</a>
+                <a href="/AppURC/leerSiniestros">Registro de Siniestros</a>
             </li>
             <li class="sidebar-nav-item"><a href="logout">cerrar sesión</a></li>
         </ul>

@@ -1,10 +1,10 @@
 from django.db import models
 from django.db.models.fields import DateField
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class poliza(models.Model): # con vista coberturas/template coberturas
-    cliente_id = models.OneToOneField("Cliente", null=True ,blank=True, on_delete=models.RESTRICT)
+    cliente_id = models.OneToOneField(User, null=True ,blank=True, on_delete=models.RESTRICT)
     poliza_id = models.AutoField(primary_key=True)
     companiaAseg = models.CharField(max_length=40)
     montoAsegurado = models.IntegerField()

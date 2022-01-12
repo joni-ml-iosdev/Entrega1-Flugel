@@ -32,7 +32,7 @@ def execute_login(request):
         user = authenticate(request, username=usernameInput,password=passwordInput)    
         
         if user is not None:
-            login(request=request, user=user)
+            login(request, user=user)
             return redirect('Home')
         else:
             Http404("No pudimos loguear al usuario, vualva a intentar")

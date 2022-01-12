@@ -41,7 +41,7 @@ urlpatterns = [
 
     path('formularioSiniestros', siniestros_view.formularioSiniestros, name='FormularioSiniestros'),
 
-    path('leerSiniestros/',siniestros_view.leerSiniestros,name="LeerSiniestros"),
+    path('leerSiniestros/',siniestros_view.leerSiniestros,name="leerSiniestros"),
     
     path('register/',register_view.register,name="register"),
 

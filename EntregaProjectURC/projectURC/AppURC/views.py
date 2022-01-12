@@ -12,8 +12,12 @@ from django.contrib import messages
 
 
 def datosAsegurado(request):  # check
-
-    return render(request, 'AppURC/ficha.html')
+    current_user = request.user
+    data = poliza.objects.all()
+    context = {
+        'fichas' : data
+    }
+    return render(request, 'AppURC/ficha.html', context)
 
 
 def coberturas(request):  # check

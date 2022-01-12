@@ -18,9 +18,16 @@
 
     {% block contenido %}
 
+        <br><p>Sarasa</p> <br>
 
-        <h1>Tablero de datos del Asegurado</h1>
+        {% for x in fichas %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
+        <br>
+        
+        <li>  {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
+        <p>x</p>
+        {% endfor %}
+        <br>
+        <br>
+        <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>
 
-        <h2>Actualiza, carga, e informa modificaciones en un solo lugar</h2>
-
-    {% endblock %}
+    {%endblock%}
