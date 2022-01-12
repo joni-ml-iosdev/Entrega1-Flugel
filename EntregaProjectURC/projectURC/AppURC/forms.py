@@ -31,3 +31,15 @@ class FormularioCoberturas(forms.Form):
     fechaContratacion = forms.DateField(initial=datetime.date.today)
     fechaVigencia = forms.DateTimeField(initial= datetime.date.today)
     detalle = forms.CharField(max_length=40)
+    
+
+class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password2']

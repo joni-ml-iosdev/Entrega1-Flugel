@@ -12,8 +12,12 @@ from django.contrib import messages
 
 
 def datosAsegurado(request):  # check
-
-    return render(request, 'AppURC/ficha.html')
+    current_user = request.user
+    data = poliza.objects.all()
+    context = {
+        'fichas' : data
+    }
+    return render(request, 'AppURC/ficha.html', context)
 
 
 def coberturas(request):  # check
@@ -148,7 +152,7 @@ def editarExportaciones(request, paisDestino_editar):
 
             editarExportacion.save()
 
-            return render(request, 'AppURC/home.html')
+            return render(request, 'AppURC/home.html') 
 
         else:
 
@@ -219,10 +223,8 @@ def formularioCoberturas(request):
 
 def readCoberturas(request):
     cobert = Cobertura.objects.all()
-
-    dicCoberturas = {"Coberturas": cobert}
-
-    return render(request, "AppURC/readCoberturas.html", dicCoberturas)
+        
+    return render(request, "ReadCoberturas", {"Coberturas": cobert})
 
 
 # vistas para nueva solapa "Registro de Siniestros"
