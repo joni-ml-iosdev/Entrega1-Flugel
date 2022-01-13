@@ -35,23 +35,23 @@
         <ul class="sidebar-nav">
             <p>Bienvenido {{ user.get_username }}</p>
             <li class="sidebar-brand"><a href="#page-top">Menu de opciones</a></li>
-            <li class="sidebar-nav-item"><a href="/AppURC/home">Home</a></li>
+            <li class="sidebar-nav-item"><a href="{% url 'Home' %}">Home</a></li>
             <li class="sidebar-nav-item">
-                <a href="ficha">Datos de Asegurados</a>
+                <a href="{% url 'DatosAsegurado' %}">Datos de Asegurados</a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="formularioCoberturas">Registro de coberturas</a>
+                <a href="{% url 'ReadCoberturas'%}">Registro de coberturas</a>
             </li>
             <li class="sidebar-nav-item">
                 <a href="documentacion">Documentacion</a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="readExportaciones">Exportciones y destinos</a>
+                <a href="{% url 'ReadExportaciones' %}">Exportciones y destinos</a>
             </li>
             <li class="sidebar-nav-item">
-                <a href="/AppURC/leerSiniestros">Registro de Siniestros</a>
+                <a href="{% url 'leerSiniestros'%}">Registro de Siniestros</a>
             </li>
-            <li class="sidebar-nav-item"><a href="logout">cerrar sesión</a></li>
+            <li class="sidebar-nav-item"><a href="{% url 'logout' %}">cerrar sesión</a></li>
         </ul>
     </nav>
     <!-- Header-->
