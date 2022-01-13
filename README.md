@@ -5,7 +5,7 @@
 
 _Se realiza un sistema de seguros aduaneros_
 
-## Comenzando 🚀
+## Features 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
