@@ -23,28 +23,54 @@ Exportaciones
 
     {% block contenido %}
 
-        <br><p>A continuación podras ver el listado de destinos y cantidad de clientes en cada uno:</p> <br>
+        <div class="container mt-3">
+            <h2>Registro de exportaciones de {{ user.get_username}}</h2>
+            <p>Resumen de Países y Cantidad de Clientes por destino</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Destino de Exportacion</th>
+                        <th>Cantidad de clientes en País de destino</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exportacion in Exportaciones %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
+                    <br>
+                    
+                        <!--<li>  {{ exportacion }} <br></li> -- li muestra los elementos como una lista-->
+                            <tr>
+                                <td>{{ exportacion.paisDestino }} 
 
-        {% for x in Exportaciones %}  <!-- BOLUDOOOOO -- uso la CLAVE, no el valor, del diccionario que armé en la vista buscarAseg -->
-        <br>
-        
-        <li>  {{ x }} <br></li> <!-- li muestra los elementos como una lista-->
+                                </td>
+                                <td>{{ exportacion.clientes }}</td>
+                                <td>
+                                    <button>
 
-            <button>
-
-                <a href="{% url 'EliminarExportaciones' x.paisDestino %}"> Eliminar registro</a>
-            </button>
-
-            <button>
-                
-                <a href="{% url 'EditarExportaciones' x.paisDestino %}"> Editar registro</a>
-
-            </button>
-
+                                        <a href="{% url 'EliminarExportaciones' exportacion.paisDestino %}"> Eliminar registro</a>
+                                    </button>
+                                    <button>
+                            
+                                        <a href="{% url 'EditarExportaciones' exportacion.paisDestino %}"> Editar registro</a>
             
+                                    </button>
+                                </td>
 
+                            </tr>       
+                        <!--
+                        <button>
 
-        {% endfor %}
+                            <a href="{% url 'EliminarExportaciones' exportacion.paisDestino %}"> Eliminar registro</a>
+                        </button>
+
+                        <button>
+                            
+                            <a href="{% url 'EditarExportaciones' exportacion.paisDestino %}"> Editar registro</a>
+
+                        </button>
+                        -->
+                    {% endfor %}
+                </tbody>
+            </table>
         <br>
         <br>
         <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>

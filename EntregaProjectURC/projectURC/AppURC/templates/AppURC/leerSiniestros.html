@@ -27,7 +27,7 @@ Registro Siniestros
 
     {% block contenido %}
 
-
+        <!--
         <h1>Enfocate en seguir creciendo</h1>
 
         {% for s in Siniestros %}
@@ -36,5 +36,30 @@ Registro Siniestros
                 {{ s }}
             </li>
         {% endfor %}
-
+        -->
+        <div class="container mt-3">
+            <h2>Datos de {{ user.get_username}}</h2>
+            <p>Resumen de siniestros</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha del siniestro</th>
+                        <th>Reclamado</th>
+                        <th>Monto Implicado</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stro in Siniestros %}
+                    <tr>
+                        <td>{{ stro.fechaSiniestro }}</td>
+                        <td>{{ stro.reclamado }}</td>
+                        <td>{{ stro.montoImplicado}}</td>
+                        <td>{{ stro.detalle}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'FormularioSiniestros' %}"> Declara un nuevo Siniestro </a>
+        </div>
     {% endblock %}
