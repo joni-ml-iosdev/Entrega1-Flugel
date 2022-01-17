@@ -28,5 +28,5 @@ _Las tareas se distribuyeron de la siguiente manera:_
 
 - _Jonatan: Desarrollo del login de usuarios, acceso y validación de login, registración de nuevos usuarios, filtro de información pripia de cada usuario en el template de ficha. Mejoras en el front de los templates. Testeo del código_
 
-_Joaquin: desarrollo de CRUD siguiendo la metodología Modelo-Vista-Template, para "Coberturas, exportaciones y siniestros". También desarrollo de los temples vinculados a "Asegurado" que finalmente no se utilizaron en este release_
+_Joaquin: desarrollo de CRUD siguiendo la metodología Modelo-Vista-Template, para "Coberturas, exportaciones y siniestros". También desarrollo de los templates vinculados a "Asegurado" que finalmente no se utilizaron en este release_
 
