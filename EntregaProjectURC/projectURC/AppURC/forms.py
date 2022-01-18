@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import *
 import datetime
 
 from django.forms.forms import Form
@@ -27,7 +28,10 @@ class FormularioSiniestros(forms.Form):
 class FormularioCoberturas(forms.Form):
 
     tipo = forms.CharField(max_length=20)
-    numeroPoliza = forms.IntegerField()
+    numeroPoliza = forms.ModelChoiceField(queryset=poliza.objects.all(), 
+                                          required=True, 
+                                          help_text="Polizas vigentes")
+    
     fechaContratacion = forms.DateField(initial=datetime.date.today)
     fechaVigencia = forms.DateTimeField(initial= datetime.date.today)
     detalle = forms.CharField(max_length=40)

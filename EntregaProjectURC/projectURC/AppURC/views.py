@@ -12,17 +12,12 @@ from django.contrib import messages
 
 
 def datosAsegurado(request):  # check
-    current_user = request.user
-    data = list(poliza.objects.all())
-    polizas = []
     
-    for unaData in data:
-        if unaData.cliente_id.id == current_user.pk:
-            polizas.append(unaData)
-            
+    data = Asegurado.objects.all()            
     context = {
-        'fichas' : polizas
+        'asegurados' : data
     }
+    
     return render(request, 'AppURC/ficha.html', context)
 
 
@@ -217,8 +212,9 @@ def formularioCoberturas(request):
             )
 
             coberturaInstancia.save()
+            cobert = Cobertura.objects.all()
 
-            return render(request, 'AppURC/readCoberturas.html')
+            return render(request, 'AppURC/readCoberturas.html', {"Coberturas": cobert})
 
     else:
 

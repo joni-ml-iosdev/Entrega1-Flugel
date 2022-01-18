@@ -20,26 +20,24 @@
 
 <div class="container mt-3">
     <h2>Datos de {{ user.get_username}}</h2>
-    <p>Resumen de polizas y coberturas</p>
+    <p>Datos del asegurado</p>
     <table class="table">
         <thead>
             <tr>
-                <th>Compania Aseguradora</th>
-                <th>Monto Asegurado</th>
-                <th>Cobertura</th>
+                <th>Razón social</th>
+                <th>CUIT</th>
             </tr>
         </thead>
         <tbody>
-            {% for ficha in fichas %}
+            {% for asegurado in asegurados %}
             <tr>
-                <td>{{ ficha.companiaAseg }}</td>
-                <td>{{ ficha.montoAsegurado }}</td>
-                <td>Vencida</td>
+                <td>{{ asegurado.razonSocial }}</td>
+                <td>{{ asegurado.cuit }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="formularioExportaciones"> Agregar nuevo destino (+) </a>
+    <a href="{% url 'FormularioAsegurado' %}"> Agregar nuevo asegurado (+) </a>
 </div>
 
 {%endblock%}
